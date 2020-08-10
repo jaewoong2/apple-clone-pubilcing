@@ -34,6 +34,7 @@ a {
     height: 44px;
     padding : 0 1rem;
     border-bottom : 1px solid #ddd;
+    z-index: 10;
 }
 
 .local-nav {
@@ -43,6 +44,7 @@ a {
     left : 0;
     width: 100%;
     padding : 0 1rem;
+    z-index: 11;
     height: 52px;
 }
 
@@ -75,11 +77,14 @@ a {
 }
 
 .scroll-section {
-    border: 1px solid red;
     padding-top : 50vh;
 }
 
 #scroll-section-0 h1{
+    position: relative;
+    /* z-index 를 사용하려면 기본이면 안됨 */
+    top : -10vh;
+    z-index: 5;
     font-size : 4rem;
     text-align : center;
 }
@@ -120,6 +125,7 @@ a {
     left : 45%;   
 }
 .desc-message {
+    opacity:  0;
     width : 50%;
     font-weight: bold;
 }
@@ -172,6 +178,26 @@ a {
     position: fixed;
     left : 0;
     width : 100%;
+}
+
+.sticky-elem-canvas{
+    height: 100vh;
+    top : 0;
+}
+
+.sticky-elem-canvas canvas{
+    position: absolute;
+    top : 50%;
+    left : 50%;
+}
+
+#scroll-section-3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.image-blend-canvas {
+    
 }
 
 #show-scene-0 #scroll-section-0 .sticky-elem,
