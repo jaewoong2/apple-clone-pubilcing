@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body {
+            height: 500vh;
+        }
+
+        .box {
+            width: 0;
+            position: fixed;
+            top : 30px;
+            width : 0;
+            height: 40px;
+            background-color: orangered;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+<script>
+    const box = document.querySelector('.box');
+    let delayedYoffset = 0;
+    let rafId ;
+    let rafState;
+
+    function loop() {
+        const ratioY = Math.round((window.pageYOffset + window.innerHeight) / document.body.clientHeight * 100) 
+        delayedYoffset = delayedYoffset + (ratioY - delayedYoffset) * 0.1;
+        box.style.width = `${delayedYoffset}%`;
+
+        rafId = requestAnimationFrame(loop)
+        if(Math.abs(pageXOffset - delayedYoffset) < 1) {
+            cancelAnimationFrame(rafId)
+            rafState = false;
+        }
+    }
+    loop()
+
+    window.addEventListener('scroll', () => {
+        rafId = !rafState && requestAnimationFrame(loop); 
+        rafState = !rafState &&  true;
+    })
+
+
+</script>
+</html>
